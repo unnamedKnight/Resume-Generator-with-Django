@@ -4,10 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "5.0"
 djlint = "*"
 pillow = "*"
-django-bootstrap-datepicker-plus = "*"
 
 [dev-packages]
 autopep8 = "*"

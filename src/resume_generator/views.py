@@ -5,7 +5,7 @@ from .models import Resume, Education, SkillDescription, ResumeProjects, Hobby, 
 
 from .forms import ResumeForm, EducationForm, SkillDescriptionForm, ResumeProjectsForm, HobbyForm, ReferencesForm
 
-
+    
 @register.filter(name='split')
 def split(value, key):
     # value.split("key")
