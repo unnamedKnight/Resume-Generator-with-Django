@@ -1,0 +1,125 @@
+.resume-detail-container {
+  width: 65%;
+  margin: auto;
+}
+.personal-info {
+  height: 320px;
+  background-color: #1f4e79;
+  color: white;
+  margin: 0;
+}
+
+.resume-image-container {
+  padding-left: 25%;
+  /* padding-bottom: 15%; */
+}
+
+.resume-image {
+  height: 220px;
+  width: 220px;
+}
+
+/* summary section */
+/* HEADER OF EACH SECTION */
+.summary-header,
+.skills-header,
+.projects-header {
+  background-color: #1f4e79;
+  color: white;
+  width: 40%;
+}
+.horizontal-rule {
+  margin-top: -10px;
+  height: 2px;
+  width: 100%;
+  background-color: #1f4e79;
+}
+
+.summary-list li {
+  padding-left: 5px;
+  margin: 2px 0px;
+  font-weight: 500;
+}
+/* end of summary section */
+
+/* education info */
+.education-info p {
+  font-weight: 600;
+}
+/* end of education info */
+
+/* skills info */
+.skills-list li {
+  padding-left: 5px;
+  margin: 2px 0px;
+  font-weight: bold;
+}
+/* end of skill info */
+
+/* project description */
+.project-description-list li {
+  padding-left: 5px;
+  margin: 2px 0px;
+  font-weight: 500;
+}
+
+.project-end-ruler {
+  height: 1px;
+  width: 100%;
+  margin: 5% 0;
+  background-color: #1f4e79;
+}
+/* end of project description */
+
+.update-resume-template {
+  height: 33px;
+  padding-top: 1%;
+  /* background-color: 	hsl(209, 59%, 30%); */
+  background-color: hsla(209, 59%, 39%, 0.5);
+}
+.update-resume-template__link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: center;
+}
+
+.update-resume-template__link:hover {
+    color:white;
+}
+
+/* profile back button */
+.profile-back__button{
+  background-color: hsl(209, 59%, 30%);
+  color: white;
+  font-weight: 500;
+}
+.profile-back__button:hover{
+  background-color: hsl(209, 59%, 20%);
+  color: white;
+  /* font-weight: 500; */
+}
+
+/* end of profile back button */
+
+/* personal-information */
+.personal-information__list{
+  list-style: none;
+}
+
+
+.personal-information__list__info{
+  font-weight: 500;
+}
+
+.reference-text{
+  font-weight: 400;
+}
+
+.resume-update-delete__button{
+  background-color: hsl(209, 59%, 90%);
+  color: hsl(209, 59%, 30%);
+  font-weight: 600;
+  border-radius: 25px;
+}

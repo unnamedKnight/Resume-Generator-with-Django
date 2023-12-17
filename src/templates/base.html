@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+        <!-- font awesome link -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+              integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <!-- jquery CDN -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+        <!-- CSS links-->
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        {% block link %}
+        {% endblock link %}
+        <title>Resume Generator!</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid nav-container py-2">
+                <a class="navbar-brand ms-2" href="{% url "home" %}"><span class="navbar-brand__text">Resume Generator</span></a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="div">
+                    <ul class="navbar-nav  me-4 mb-2 mb-lg-0">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{% url "create_resume" %}">
+                                <span class="nav-link__text">Generate Your Resume</span></a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <span class="nav-link__text">About Us</span></a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "profile" request.user.profile.id %}">
+                                    <span class="nav-link__text">Profile</span></a>
+                            </li>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "user_logout" %}">
+                                    <span class="nav-link__text">Logout</span></a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "user_login" %}">
+                                    <span class="nav-link__text">Login</span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock content %}
+        <footer class="text-center text-lg-start text-dark footer-bs">
+            <!-- <footer class="text-center text-lg-start text-dark fixed-bottom"> -->
+            <!-- Section: Social media -->
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-6 col-xl-6 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold">Unknown Business</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 180px;
+                                       height: 2px" />
+                            <p>Here, we help you to build the Resume that you want. For inspiration you may check other resumes.  Good Luck !!!</p>
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold">Contact</h6>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px;
+                                       height: 2px" />
+                            <p>
+                                <i class="fas fa-home mr-3"></i> New York, NY 10012, US
+                            </p>
+                            <p>
+                                <i class="fas fa-envelope mr-3"></i> info@example.com
+                            </p>
+                            <p>
+                                <i class="fas fa-phone mr-3"></i> + 01 234 567 88
+                            </p>
+                            <p>
+                                <i class="fas fa-print mr-3"></i> + 01 234 567 89
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </div>
+            </section>
+            <!-- Section: Links  -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2023 Copyright:
+                <a class="text-white company-link" href="https://mdbootstrap.com/">UnknownBusiness.com</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+    </body>
+</html>

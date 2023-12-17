@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/resume_detail.css' %}">
+{% endblock link %}
+{% block content %}
+    {% comment %} <h2 class="my-4 text-center my-3">
+        <span class="text-start">
+            <i class="fa-solid fa-arrow-left"></i>
+        </span>
+        Update Your Resume
+    </h2> {% endcomment %}
+    <div class="resume-detail-container">
+        <!-- section header and go back link -->
+        <div class="row my-4 ">
+            <div class="col-2 text-start ">
+                {% comment %} <i class="fa-solid fa-arrow-left"></i> {% endcomment %}
+                <a class="btn btn-primary profile-back__button mt-1"
+                   href=" {% url 'profile' resume.profile.id %}">Go Back</a>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-6">
+                <h2 class="ms-3">Update Your Resume</h2>
+            </div>
+        </div>
+        <!-- end of section header and go back link -->
+        <!-- -------------------- personal info --------------------- -->
+        <div class="row personal-info">
+            <div class="col-7 pt-5 pb-2 align-self-start">
+                <div class="container ps-5 personal-info__container ">
+                    <h2 class="perslnal-info__name">{{ resume.profile.full_name| title }}</h2>
+                    <h5 class="perslnal-info__designation">{{ resume.resume_developer_role|title }}</h5>
+                    <p>{{ resume.resume_short_intro }}</p>
+                    <div class="row">
+                        <div class="col-4">
+                            <span>
+                                <i class="fa-solid fa-mobile"></i>
+                            {{ resume.profile.phone_number }}</span>
+                        </div>
+                        <div class="col-6">
+                            <i class="fa-solid fa-envelope"></i>
+                            {{ resume.profile.email }}
+                        </div>
+                    </div>
+                    <div class="py-3">
+                        {% comment %} <i class="fa-solid fa-location-dot">
+                            <span class=>{{ resume.profile.address | title }}</span>
+                        </i> {% endcomment %}
+                        <div class="col-6">
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ resume.profile.address|title }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 align-self-center">
+                <div class="container resume-image-container">
+                    <img class="rounded mx-auto resume-image"
+                         src="{{ resume.resume_image.url }}"
+                         alt="">
+                </div>
+            </div>
+        </div>
+        <!-- ------------------- end personal info ------------------ -->
+        <!-- ---------------------- summary section ----------------- -->
+        {% if resume.skill_summary %}
+            <section class="carrer-summary mt-4">
+                <h4 class="p-2 ps-5 summary-header">SUMMARY</h4>
+                <div class="horizontal-rule"></div>
+                <div class="py-3">
+                    <ul class="mt-3 ps-5 summary-list">
+                        {% for skill in skill_summary %}
+                            {% if skill %}<li>{{ skill }}</li>{% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        {% endif %}
+        <!-- Resume info updating link -->
+        <div class="update-resume-template">
+            <a class="mx-4 update-resume-template__link"
+               href=" {% url 'resume_update_view' resume.id %}">
+            Please click to update Title, Image, Developer Role, Short Intro and Skill Summary for this Resume.</a>
+        </div>
+        <!-- end of Resume Info updating link -->
+        <!-- ---------------------- end of summary ----------------- -->
+        <!-- ---------------------- education section ----------------- -->
+        <section class="carrer-summary mt-4">
+            <div class="mt-2">
+                <h4 class="p-2 ps-5 summary-header">EDUCATION</h4>
+                <div class="horizontal-rule"></div>
+                {% if resume.profile.education_set.all %}
+                    <div class="ps-5 pt-5 pb-3">
+                        {% for education in resume.profile.education_set.all %}
+                            <div class="row education-info mb-3">
+                                <div class="col-3">
+                                    <h6 class="fw-bold text-end mb-1">{{ education.name_of_educational_qualification|upper }}</h6>
+                                    <p class="text-end">{{ education.passing_year }}</p>
+                                </div>
+                                <div class="col-6 ps-4">
+                                    <h6 class="fw-bold text-start mb-1">{{ education.name_of_the_institution|title }}</h6>
+                                    <p class="text-start mb-1">Grade: {{ education.grade }}</p>
+                                    <p class="text-start mb-1">Department: {{ education.name_of_the_department|title }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+        <!-- ---------------------- education summary ----------------- -->
+        <!-- ---------------------- skills section ----------------- -->
+        <section class="skill mt-4">
+            <h4 class="p-2 ps-5 skills-header">SKILLS</h4>
+            <div class="horizontal-rule"></div>
+            {% if resume.skilldescription_set.all %}
+                {% for skill in resume.skilldescription_set.all %}
+                    <div class="py-3">
+                        <ul class="mt-3 ps-5 skills-list">
+                            <li>{{ skill.skill_description }}</li>
+                            <div class="my-2">
+                                <a href="{% url 'update_skill' skill.id %}"
+                                   class="btn btn-sm resume-update-delete__button">Edit</a>
+                                <a href="{% url 'delete_skill' skill.id %}"
+                                   class="btn btn-sm ms-3 resume-update-delete__button">Delete</a>
+                            </div>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="update-resume-template my-4">
+                <a class="mx-4 update-resume-template__link"
+                   href=" {% url 'create_skill' resume.id %}">
+                Please click to add more Skill Description for this Resume.</a>
+            </div>
+        </section>
+        <!-- ---------------------- end of skill section----------------- -->
+        <!-- -------------------- projects section ---------------------- -->
+        <section class="projects mt-4">
+            <h4 class="p-2 ps-5 projects-header">EXPERIENCE</h4>
+            <div class="horizontal-rule"></div>
+            {% for project in resume.resumeprojects_set.all %}
+                <div class="mt-5 ps-5 project">
+                    <h6 class="project-title fw-bold">Project Title: {{ project.project_title |title }}</h6>
+                    <h6 class="project-link fw-bold">
+                        Github Link: <a href="{{ project.github_link }}">Please Click Here</a>
+                    </h6>
+                    <h6 class="project-technologies fw-bold">Technologies used: {{ project.technologies_used | title }}</h6>
+                    <ul class="my-4 ps-5 project-description-list">
+                        {% with project.project_summary|split:"." as summary %}
+                            {% for item in summary %}
+                                {% if item %}<li>{{ item }}</li>{% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                    <div class="my-2">
+                        <a href="{% url 'update_resume_project' project.id %}"
+                           class="btn btn-sm resume-update-delete__button">Edit</a>
+                        <a href="{% url 'delete_resume_project' project.id %}"
+                           class="btn btn-sm ms-3 resume-update-delete__button">Delete</a>
+                    </div>
+                    <div class="project-end-ruler"></div>
+                </div>
+            {% endfor %}
+            <div class="update-resume-template my-4">
+                <a class="mx-4 update-resume-template__link"
+                   href=" {% url 'create_resume_project' resume.id %}">Please click to add more Projects for this Resume.</a>
+            </div>
+        </section>
+        <!-- --------------- end of project section --------------------- -->
+        <!-- personal information -->
+        <section class="projects mt-4">
+            <h4 class="p-2 ps-5 projects-header">PERSONAL INFORMATION</h4>
+            <div class="horizontal-rule"></div>
+            <div class="mt-5 ps-5 project">
+                <ul class="my-4 ps-5 personal-information__list">
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Father's name:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.fathers_name|title }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Mother's name:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.mothers_name|title }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Date of birth:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.date_of_birth }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Gender:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.get_gender_display | title }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Religion:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.religion |title }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Nationality:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.nationality | title }}</div>
+                        </div>
+                    </li>
+                    {% if not resume.profile.martial_status %}
+                        <li>
+                            <div class="row">
+                                <div class="col-2 fw-bold">Marital status:</div>
+                                <div class="col-3 personal-information__list__info">Unmarried</div>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li>
+                            <div class="row">
+                                <div class="col-2 fw-bold">Marital status:</div>
+                                <div class="col-3 personal-information__list__info">Married</div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <div class="row">
+                            <div class="col-2 fw-bold">Address:</div>
+                            <div class="col-3 personal-information__list__info">{{ resume.profile.address | title }}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- end of personal information -->
+        <!-- hobbies -->
+        <section class="projects mt-4">
+            <h4 class="p-2 ps-5 projects-header">HOBBIES</h4>
+            <div class="horizontal-rule"></div>
+            {% if resume.hobby_set.all %}
+                <div class="mt-5 ps-5 project">
+                    <ul class="my-4 ps-5 project-description-list">
+                        {% for item in resume.hobby_set.all %}
+                            <li>{{ item.name|title }}</li>
+                            <div class="my-2">
+                                <a href="{% url 'update_hobby' item.id %}"
+                                   class="btn btn-sm resume-update-delete__button">Edit</a>
+                                <a href="{% url 'delete_hobby' item.id %}"
+                                   class="btn btn-sm ms-3 resume-update-delete__button">Delete</a>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <div class="update-resume-template my-4">
+                <a class="mx-4 update-resume-template__link"
+                   href=" {% url 'create_hobby' resume.id %}">Please click to add more Hobbies for this Resume.</a>
+            </div>
+        </section>
+        <!-- end of hobbies -->
+        <!-- references -->
+        <section class="projects mt-4">
+            <h4 class="p-2 ps-5 projects-header">REFERENCES</h4>
+            <div class="horizontal-rule"></div>
+            {% if resume.references_set.all %}
+                <div class="mt-5 ps-5 project">
+                    {% for reference in resume.references_set.all %}
+                        <p class="ps-5">{{ reference.referrer_job_title|title }} {{ reference.referrer|title }}</p>
+                        <p class="ps-5">{{ reference.referrer_institution|title }}</p>
+                        <p class="ps-5">Mobile: {{ reference.referrer_phn }}</p>
+                        <div class="my-2">
+                            <a href="{% url 'update_reference' reference.id %}"
+                               class="btn btn-sm resume-update-delete__button">Edit</a>
+                            <a href="{% url 'delete_reference' reference.id %}"
+                               class="btn btn-sm ms-3 resume-update-delete__button">Delete</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="update-resume-template my-4">
+                <a class="mx-4 update-resume-template__link"
+                   href=" {% url 'create_reference' resume.id %}">Please click to add more Reference for this Resume.</a>
+            </div>
+        </section>
+        <!-- end of references -->
+    </div>
+{% endblock content %}

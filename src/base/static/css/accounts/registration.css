@@ -1,0 +1,43 @@
+.registration-card {
+  width: 55%;
+  border-radius: 10px;
+}
+
+.registration-card__header {
+  background-color: hsl(177, 72%, 37%);
+  color: white;
+  border-radius: 10px;
+}
+.registration-card__form__fields,
+.login-form__field {
+  width: 80%;
+  /* margin-left: 10%; */
+}
+
+.registration-submit {
+  background-color: hsl(177, 72%, 37%);
+  margin-left: 10%;
+  font-weight: 600;
+  color:white;
+}
+
+.registration-submit:hover {
+  background-color: hsl(177, 72%, 25%);
+  color: white;
+}
+
+.registration-error {
+  margin: 10px 0;
+  color: red;
+}
+
+.registration__link,
+.login__link {
+  margin-left: 10%;
+  font-weight: 500;
+}
+
+.help-text-date-time{
+  color:hsl(177, 72%, 57%);
+}
+

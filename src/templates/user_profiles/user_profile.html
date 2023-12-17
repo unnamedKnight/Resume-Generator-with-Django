@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/user_profiles/user_profile.css" %}">
+{% endblock link %}
+{% block content %}
+    <section class="h-100 gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <!-- changed col value col-11 to col -->
+                <div class="col ">
+                    <div class="card">
+                        <div class="rounded-top text-white d-flex flex-row mb-5"
+                             style="background-color: hsl(177, 72%, 37%);
+                                    height:200px">
+                            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                                <img src="{{ profile.profile_image.url }}"
+                                     alt="Generic placeholder image"
+                                     class="img-fluid img-thumbnail mt-4 mb-2"
+                                     style="width: 150px;
+                                            height: 150px;
+                                            z-index: 1">
+                                <a href="{% url "edit_profile" request.user.profile.id %}"
+                                   type="button"
+                                   class="btn edit-profile__button "
+                                   data-mdb-ripple-color="dark"
+                                   style="z-index: 1">Edit Profile</a>
+                            </div>
+                            <div class="ms-4" style="margin-top: 130px;">
+                                <h5>{{ profile.full_name|title }}</h5>
+                                <p>{{ profile.address|title }}</p>
+                            </div>
+                        </div>
+                        <!-- About -->
+                        <div class="card-body p-4 text-black">
+                            <div class="mt-5 mb-2">
+                                <p class="lead text-center fw-bold mb-2">About</p>
+                                <div class="p-4" style="background-color: #f8f9fa;">
+                                    <p class="mb-1">
+                                        <span class="fw-bold">Developer Role:</span> {{ profile.developer_role | title }}
+                                    </p>
+                                    <p>
+                                        <span class="fw-bold">About Me:</span> {{ profile.short_intro }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of About -->
+                        <!-- Personal Information -->
+                        <div class="card-body p-4 text-black">
+                            <div class="my-2">
+                                <p class="lead text-center fw-bold mb-2">Personal Information</p>
+                                <div class="text-center mb-3">
+                                    <small>Please note that these info will be used to generate your Resume</small>
+                                </div>
+                                <div class="p-4" style="background-color: #f8f9fa;">
+                                    <p class="fw-bold">
+                                        Father's name: <span class="user-profile__info">{{ profile.fathers_name|title }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Mother's name: <span class="user-profile__info">{{ profile.mothers_name|title }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Email: <span class="user-profile__info">{{ profile.email }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Phone number: <span class="user-profile__info">{{ profile.phone_number }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Date of birth: <span class="user-profile__info">{{ profile.date_of_birth }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Gender: <span class="user-profile__info">{{ profile.get_gender_display|title }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Religion: <span class="user-profile__info">{{ profile.religion|title }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Nationality: <span class="user-profile__info">{{ profile.nationality|title }}</span>
+                                    </p>
+                                    <p class="fw-bold">
+                                        Marital status:
+                                        <span class="user-profile__info">
+                                            {% if not profile.martial_status %}
+                                                Unmarried
+                                            {% else %}
+                                                Married
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of personal information -->
+                        <!-- Educational Information -->
+                        <div class="card-body p-4 text-black">
+                            <div class="my-2">
+                                <p class="lead text-center fw-bold mb-2">Educational Information</p>
+                                {% if not profile.education_set.all %}
+                                    <div class="p-4" style="background-color: #f8f9fa;">
+                                        <a class="educational-details__link"
+                                           href="{% url "add_educational_details" %}">Please Add Some Educational Details otherwise Education section will be hidden from resume</a>
+                                    </div>
+                                {% else %}
+                                    {% for item in profile.education_set.all %}
+                                        <div class="card mb-4 text-center">
+                                            <div class="card-header h4 fw-bold">{{ item.name_of_educational_qualification|upper }}</div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ item.name_of_the_institution|title }}</h5>
+                                                <p class="card-text">Department: {{ item.name_of_the_department |title }}</p>
+                                                <p class="card-text">Passing Year: {{ item.passing_year }}</p>
+                                                <p class="card-text">Grade: {{ item.grade }}</p>
+                                                <a href="{% url "update_educational_detail" item.id %}"
+                                                   class="btn me-4 edit-educational-details__button">Edit</a>
+                                                <a href="{% url "delete_educational_detail" item.id %}"
+                                                   class="btn edit-educational-details__button">Delete</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="p-3 text-center" style="background-color: #f8f9fa;">
+                                        <a class="educational-details__link"
+                                           href="{% url "add_educational_details" %}">Add More Educational Details</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- end of Educational Information -->
+                        <!-- resume section -->
+                        {% if not profile.resume_set.all %}
+                            <p class="lead text-center fw-bold mb-2">Please Create A Resume</p>
+                        {% else %}
+                            <p class="lead text-center fw-bold my-3">Please Add More Resume</p>
+                            {% for item in profile.resume_set.all %}
+                                <div class="card my-3 mx-4">
+                                    <div class="card-body mx-3">
+                                        <h5 class="card-title mx-2">{{ item.resume_title }}</h5>
+                                        <p class="card-text mx-2">
+                                            We have created a basic Resume template for you. Feel free to add more information as you like.
+                                        </p>
+                                        <a href="{% url 'resume_detail_view' item.id %}"
+                                           class="btn edit-profile__button mx-2">View Details</a>
+                                        <a href="{% url "resume_template_update_view" item.id %}"
+                                           class="btn edit-profile__button mx-2">Update Resume</a>
+                                        <a href="{% url 'resume_delete_view' item.id %}"
+                                           class="btn edit-profile__button mx-2">Delete Resume</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <a class="m-4 btn create-resume__button align-self-end"
+                           href="{% url "create_resume" %}">Create Resume</a>
+                        <!-- end of resume section -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

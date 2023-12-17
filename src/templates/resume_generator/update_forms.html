@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/accounts/registration.css" %}">
+{% endblock link %}
+{% block content %}
+    <div class="card registration-card mx-auto my-5">
+        {% if page == "update resume" %}
+            <h5 class="card-header text-center registration-card__header">Update Resume Personal Information</h5>
+        {% elif page == "update education" %}
+            <h5 class="card-header text-center registration-card__header">Update Educational Details</h5>
+        {% elif page == "update_skill_description" %}
+            <h5 class="card-header text-center registration-card__header">Update Skill Discription</h5>
+        {% elif page == "update_resume_projects" %}
+            <h5 class="card-header text-center registration-card__header">Update Resume Project</h5>
+        {% elif page == "update_hobby" %}
+            <h5 class="card-header text-center registration-card__header">Update Hobby</h5>
+        {% elif page == "update_references" %}
+            <h5 class="card-header text-center registration-card__header">Update Rdference</h5>
+        {% endif %}
+        <div class="card-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group my-3 mx-auto registration-card__form__fields">
+                        <label for="#" class="form-label">{{ field.label|title }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}<p class="registration-error">{{ error }}</p>{% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primar registration-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

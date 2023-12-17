@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/resume_detail.css' %}">
+{% endblock link %}
+{% block content %}
+    <h2 class="my-4 text-center my-3">Here is your Resume</h2>
+    <div class="resume-detail-container">
+        <!-- -------------------- personal info --------------------- -->
+        <div class="row personal-info">
+            <div class="col-7 pt-5 pb-2 align-self-start">
+                <div class="container ps-5 personal-info__container ">
+                    <h2 class="perslnal-info__name">Whats my name?</h2>
+                    <h5 class="perslnal-info__designation">Full Stack Developer</h5>
+                    <p>
+                        The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar.
+                    </p>
+                    <div class="row">
+                        <div class="col-4">
+                            <span>
+                                <i class="fa-solid fa-mobile"></i>
+                            your phone number</span>
+                        </div>
+                        <div class="col-6">
+                            <i class="fa-solid fa-envelope"></i>
+                            atikeprofessional117@gmail.com
+                        </div>
+                    </div>
+                    <div class="py-3">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 align-self-center">
+                <div class="container resume-image-container">
+                    <img class="rounded mx-auto resume-image" src="{% static "images/resume-image2.jpg" %}" alt="resume-image">
+                </div>
+            </div>
+        </div>
+        <!-- ------------------- end personal info ------------------ -->
+        <!-- ---------------------- summary section ----------------- -->
+        <section class="carrer-summary mt-4">
+            <h4 class="p-2 ps-5 summary-header">Summary</h4>
+            <div class="horizontal-rule"></div>
+            <div class="py-3">
+                <ul class="mt-3 ps-5 summary-list">
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- ---------------------- end of summary ----------------- -->
+        <!-- ---------------------- education section ----------------- -->
+        <section class="carrer-summary mt-4">
+            <div class="mt-2">
+                <h4 class="p-2 ps-5 summary-header">Education</h4>
+                <div class="horizontal-rule"></div>
+                <div class="ps-5 pt-5 pb-3">
+                    <div class="row education-info mb-3">
+                        <div class="col-3">
+                            <h6 class="fw-bold text-end mb-1">Bachelor of Science</h6>
+                            <p class="text-end">Year</p>
+                        </div>
+                        <div class="col-4 ps-4">
+                            <h6 class="fw-bold text-start mb-1">Name of the University</h6>
+                            <p class="text-start mb-1">Grade:</p>
+                            <p class="text-start mb-1">Department</p>
+                        </div>
+                    </div>
+                    <div class="row education-info mb-3">
+                        <div class="col-3">
+                            <h6 class="fw-bold text-end mb-1">HSC</h6>
+                            <p class="text-end">Year</p>
+                        </div>
+                        <div class="col-4 ps-4">
+                            <h6 class="fw-bold text-start mb-1">Name of the University</h6>
+                            <p class="text-start mb-1">Grade:</p>
+                            <p class="text-start mb-1">Department:</p>
+                        </div>
+                    </div>
+                    <div class="row education-info mb-3">
+                        <div class="col-3">
+                            <h6 class="fw-bold text-end mb-1">SSC</h6>
+                            <p class="text-end">Year</p>
+                        </div>
+                        <div class="col-4 ps-4">
+                            <h6 class="fw-bold text-start mb-1">Name of the University</h6>
+                            <p class="text-start mb-1">Grade:</p>
+                            <p class="text-start mb-1">Department:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ---------------------- education summary ----------------- -->
+        <!-- ---------------------- skills section ----------------- -->
+        <section class="skill mt-4">
+            <h4 class="p-2 ps-5 skills-header">Skills</h4>
+            <div class="horizontal-rule"></div>
+            <div class="py-3">
+                <ul class="mt-3 ps-5 skills-list">
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- ---------------------- end of skill section----------------- -->
+        <!-- -------------------- projects section ---------------------- -->
+        <section class="projects mt-4">
+            <h4 class="p-2 ps-5 projects-header">My Projects</h4>
+            <div class="horizontal-rule"></div>
+            <div class="mt-5 ps-5 project">
+                <h6 class="project-title fw-bold">Project Title:</h6>
+                <h6 class="project-link fw-bold">Github Link:</h6>
+                <h6 class="project-technologies fw-bold">Technologies used:</h6>
+                <ul class="my-4 ps-5 project-description-list">
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                </ul>
+                <div class="project-end-ruler"></div>
+            </div>
+            <div class="mt-5 ps-5 project">
+                <h6 class="project-title fw-bold">Project Title:</h6>
+                <h6 class="project-link fw-bold">Github Link:</h6>
+                <h6 class="project-technologies fw-bold">Technologies used:</h6>
+                <ul class="mt-3 ps-5 project-description-list">
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                </ul>
+                <div class="project-end-ruler"></div>
+            </div>
+            <div class="mt-5 ps-5 project">
+                <h6 class="project-title fw-bold">Project Title:</h6>
+                <h6 class="project-link fw-bold">Github Link:</h6>
+                <h6 class="project-technologies fw-bold">Technologies used:</h6>
+                <ul class="mt-3 ps-5 project-description-list">
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eos odio ipsa vitae impedit soluta.</li>
+                </ul>
+                <div class="project-end-ruler"></div>
+            </div>
+        </section>
+        <!-- --------------- end of project section --------------------- -->
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+.edit-profile__button,
+.create-resume__button,
+.edit-educational-details__button {
+  background-color: hsl(177, 72%, 37%);
+  /* margin-left: 10%; */
+  font-weight: 500;
+  color: white;
+}
+
+.edit-profile__button:hover {
+  background-color: hsl(177, 72%, 25%);
+  color: white;
+}
+
+.edit-profile__button:focus {
+  box-shadow: none;
+}
+
+.create-resume__button {
+  display: inline-block;
+  width: 10%;
+}
+
+.create-resume__button:hover {
+  background-color: hsl(177, 72%, 25%);
+  color: white;
+}
+
+.create-resume__button:focus {
+  box-shadow: none;
+}
+
+
+.edit-educational-details__button:hover {
+  background-color: hsl(177, 72%, 25%);
+  color: white;
+}
+
+.edit-educational-details__button:focus {
+  box-shadow: none;
+}
+
+.educational-details__link{
+  text-decoration: none;
+  color: hsl(177, 72%, 37%);
+  font-weight: 500;
+}
+
+.user-profile__info{
+  font-weight: 500;
+}

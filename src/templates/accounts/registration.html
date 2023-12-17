@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/accounts/registration.css" %}">
+{% endblock link %}
+{% block content %}
+    <div class="card registration-card mx-auto my-5">
+        <h5 class="card-header text-center registration-card__header">Create An Account</h5>
+        <div class="card-body">
+            <form action="{% url "user_registration" %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group my-3 mx-auto registration-card__form__fields">
+                        <label for="#" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}<p class="registration-error">{{ error }}</p>{% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primar registration-submit">SIGN UP</button>
+                <p class="py-3 login__link">Already have an account?
+                    <a href="{% url "user_login" %}"> Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

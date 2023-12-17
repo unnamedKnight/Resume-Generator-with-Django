@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "css/accounts/registration.css" %}">
+{% endblock link %}
+{% block content %}
+    <div class="card registration-card mx-auto my-5">
+        <h5 class="card-header text-center registration-card__header">Edit Your Profile</h5>
+        <div class="card-body">
+            <form action="{% url "edit_profile" request.user.profile.id %}"
+                  method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.label == "gender" %}
+                        <div class="form-group">
+                            <label for="#" class="form-label">{{ field.label }}</label>
+                            <select class="form-control" name="{{ form.gender.name }}">
+                                {% for value, label in form.gender.field.choices %}
+                                    <option value="{{ value }}"
+                                            {% if value == form.gender.value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% else %}
+                        <div class="form-group my-3 mx-auto registration-card__form__fields">
+                            <label for="#" class="form-label">{{ field.label }}</label>
+                            {% if field.help_text %}<p class="help-text-date-time">{{ field.help_text }}</p>{% endif %}
+                            {{ field }}
+                            {% for error in field.errors %}<p class="registration-error">{{ error }}</p>{% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primar registration-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
