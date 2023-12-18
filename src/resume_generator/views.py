@@ -5,7 +5,27 @@ from .models import Resume, Education, SkillDescription, ResumeProjects, Hobby, 
 
 from .forms import ResumeForm, EducationForm, SkillDescriptionForm, ResumeProjectsForm, HobbyForm, ReferencesForm
 
-    
+from django.shortcuts import render
+from django.http import HttpResponse
+from weasyprint import HTML
+
+
+def render_pdf(request):
+    # Your data for the template
+    context = {'title': 'PDF with CSS Styling'}
+
+    # Render the template
+    html_string = render(request, 'your_template.html', context).content.decode('utf-8')
+
+    # Create a PDF using WeasyPrint
+    pdf_file = HTML(string=html_string).write_pdf()
+
+    # Return the PDF as an HttpResponse
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="output.pdf"'
+    return response
+
+
 @register.filter(name='split')
 def split(value, key):
     # value.split("key")
