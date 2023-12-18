@@ -78,7 +78,7 @@ class ProfileForm(forms.ModelForm):
 
     def clean_phone_number(self, *args, **kwargs):
         data = self.cleaned_data["phone_number"]
-        if data == None or not len(data) > 11:
+        if data is None or not len(data) > 10:
             raise forms.ValidationError("Please fill this field")
         return data
 

@@ -26,57 +26,59 @@ urlpatterns = [
 
     # ---------------------- skill description --------------------- #
 
-     # the following url takes a resume instance id
+    # the following url takes a resume instance id
     path("create-skill-description/<id>",
          views.create_skill, name="create_skill"),
-     # the following url takes a skill_description instance id
+    # the following url takes a skill_description instance id
     path("update-skill-description/<id>",
          views.update_skill, name="update_skill"),
-     # the following url takes a skill_description instance id
+    # the following url takes a skill_description instance id
     path("delete-skill-description/<id>",
          views.delete_skill, name="delete_skill"),
 
     # ------------------ end of skill description ------------------ #
     # ----------------------- resume projects ---------------------- #
 
-     # the following url takes a resume instance id
+    # the following url takes a resume instance id
     path("create-resume-project/<id>",
          views.create_resume_project, name="create_resume_project"),
-     # the following url takes a resume_project instance id
+    # the following url takes a resume_project instance id
     path("update-resume-project/<id>",
          views.update_resume_project, name="update_resume_project"),
-     # the following url takes a resume_project instance id
+    # the following url takes a resume_project instance id
     path("delete-resume-project/<id>",
          views.delete_resume_project, name="delete_resume_project"),
 
     # ------------------- end of resume projects ------------------- #
     # ---------------------------- hobby --------------------------- #
 
-     # the following url takes a resume instance id
+    # the following url takes a resume instance id
     path("create-hobby/<id>",
          views.create_hobby, name="create_hobby"),
-     # the following url takes a hobby instance id
+    # the following url takes a hobby instance id
     path("update-hobby/<id>",
          views.update_hobby, name="update_hobby"),
-     # the following url takes a hobby instance id
+    # the following url takes a hobby instance id
     path("delete-hobby/<id>",
          views.delete_hobby, name="delete_hobby"),
 
     # ------------------------ end of hobby ------------------------ #
     # -------------------------- reference ------------------------- #
 
-     # the following url takes a resume instance id
+    # the following url takes a resume instance id
     path("create-reference/<id>",
          views.create_reference, name="create_reference"),
-     # the following url takes a reference instance id
+    # the following url takes a reference instance id
     path("update-reference/<id>",
          views.update_reference, name="update_reference"),
-     # the following url takes a reference instance id
+    # the following url takes a reference instance id
     path("delete-reference/<id>",
          views.delete_reference, name="delete_reference"),
 
     # ---------------------- end of reference ---------------------- #
-
-
+    # ------------------------ generate pdf ------------------------ #
+    path("generate-pdf/<id>", views.generate_pdf, name="generate_pdf"),
+    path("view-pdf/<id>", views.view_pdf, name="view_pdf"),
+    # --------------------- end of generate pdf -------------------- #
 
 ]
