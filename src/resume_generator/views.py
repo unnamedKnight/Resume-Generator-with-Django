@@ -66,7 +66,7 @@ def home(request):
         Q(resumeprojects__project_title__icontains=search_query) |
         Q(resumeprojects__technologies_used__icontains=search_query)
 
-    )
+    ).distinct()
     context = {
         "resumes": resumes
     }

@@ -143,6 +143,8 @@
                                            class="btn edit-profile__button mx-2">Update Resume</a>
                                         <a href="{% url 'resume_delete_view' item.id %}"
                                            class="btn edit-profile__button mx-2">Delete Resume</a>
+                                        <a href="{% url 'generate_pdf' item.id %}"
+                                           class="btn edit-profile__button mx-2">Download</a>
                                     </div>
                                 </div>
                             {% endfor %}
