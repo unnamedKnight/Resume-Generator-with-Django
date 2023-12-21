@@ -22,7 +22,7 @@ def generate_pdf(request, id):
     external_css_path = os.path.join(BASE_DIR, 'base', 'static', 'css', 'resume_pdf.css')
 
     # Render the template
-    html_string = render(request, 'generate-pdf.html',
+    html_string = render(request, 'generate-pdf2.html',
                          context).content.decode('utf-8')
 
     # Create a PDF using WeasyPrint

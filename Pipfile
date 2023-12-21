@@ -8,6 +8,10 @@ django = "5.0"
 djlint = "*"
 pillow = "*"
 weasyprint = "*"
+gunicorn = "*"
+reportlab = "*"
+cairocffi = "*"
+wfastcgi = "*"
 
 [dev-packages]
 autopep8 = "*"
