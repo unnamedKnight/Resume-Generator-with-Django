@@ -33,10 +33,12 @@
                     <tr>
                         <td scope="row">{{ resume.resume_title }}</td>
                         <td>
-                            <a class="btn btn-sm search-button" href="{% url "resume_detail_view" resume.id %}"><span class="search-button__text">View details</span></a>
+                            <a class="btn btn-sm search-button"
+                               href="{% url "resume_detail_view" resume.id %}"><span class="search-button__text">View details</span></a>
                         </td>
                         <td>
-                            <a class="btn btn-sm search-button" href="{% url "generate_pdf" resume.id %}"><span class="search-button__text">Download</span></a>
+                            <a class="btn btn-sm search-button"
+                               ><span class="search-button__text" id="generate-pdf" onclick="make_pdf()">Download</span></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -44,3 +46,6 @@
         </table>
     </div>
 {% endblock content %}
+
+
+
