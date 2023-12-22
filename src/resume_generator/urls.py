@@ -78,6 +78,7 @@ urlpatterns = [
     # ---------------------- end of reference ---------------------- #
     # ------------------------ generate pdf ------------------------ #
     path("generate-pdf/<id>", views.generate_pdf, name="generate_pdf"),
+    path("view-pdf/<id>", views.view_pdf, name="view_pdf"),
     # --------------------- end of generate pdf -------------------- #
 
 ]

@@ -13,6 +13,13 @@ def generate_pdf(request, id):
     return render(request, 'generate-pdf3.html', context)
 
 
+def view_pdf(request, id):
+    resume = Resume.objects.get(id=id)
+    absolute_image_url = request.build_absolute_uri(resume.resume_image.url)
+    context = {'resume': resume, "resume_image_url": absolute_image_url}
+    return render(request, 'generate-pdf.html', context)
+
+
 @register.filter(name='split')
 def split(value, key):
     # value.split("key")
