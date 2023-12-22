@@ -35,14 +35,6 @@ def generate_pdf(request, id):
     return response
 
 
-def view_pdf(request, id):
-    resume = Resume.objects.get(id=id)
-    print(resume.profile.full_name)
-    context = {
-        "resume": resume
-    }
-    return render(request, "generate-pdf.html", context)
-
 
 @register.filter(name='split')
 def split(value, key):

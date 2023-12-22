@@ -24,7 +24,7 @@
                 <tr>
                     <th scope="col">Resume Name</th>
                     {% comment %} <th scope="col">Last Name</th> {% endcomment %}
-                    <th scope="col">See Details</th>
+                    <th scope="col">Download</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                         <td scope="row">{{ resume.resume_title }}</td>
                         {% comment %} <td>Thornton</td> {% endcomment %}
                         <td>
-                            <a class="btn btn-sm search-button" href="{% url "resume_detail_view" resume.id %}"><span class="search-button__text">View details</span></a>
+                            <a class="btn btn-sm search-button" href="{% url "generate_pdf" resume.id %}"><span class="search-button__text">Download</span></a>
                         </td>
                     </tr>
                 {% endfor %}
