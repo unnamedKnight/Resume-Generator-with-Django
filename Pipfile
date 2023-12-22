@@ -7,7 +7,7 @@ name = "pypi"
 django = "5.0"
 djlint = "*"
 pillow = "*"
-weasyprint = "*"
+gunicorn = "*"
 
 [dev-packages]
 autopep8 = "*"

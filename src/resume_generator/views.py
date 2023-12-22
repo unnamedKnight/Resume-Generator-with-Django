@@ -5,35 +5,12 @@ from .models import Resume, Education, SkillDescription, ResumeProjects, Hobby, 
 
 from .forms import ResumeForm, EducationForm, SkillDescriptionForm, ResumeProjectsForm, HobbyForm, ReferencesForm
 
-# import for generating pdf
-from django.http import HttpResponse
-from weasyprint import HTML, CSS
-import os
-from base.settings import BASE_DIR
-
 
 def generate_pdf(request, id):
-    # Your data for the template
     resume = Resume.objects.get(id=id)
     absolute_image_url = request.build_absolute_uri(resume.resume_image.url)
     context = {'resume': resume, "resume_image_url": absolute_image_url}
-
-    # external CSS path
-    external_css_path = os.path.join(BASE_DIR, 'base', 'static', 'css', 'resume_pdf.css')
-
-    # Render the template
-    html_string = render(request, 'generate-pdf.html',
-                         context).content.decode('utf-8')
-
-    # Create a PDF using WeasyPrint
-    pdf_file = HTML(string=html_string).write_pdf(
-        stylesheets=[CSS(filename=external_css_path)])
-
-    # Return the PDF as an HttpResponse
-    response = HttpResponse(pdf_file, content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="output.pdf"'
-    return response
-
+    return render(request, 'generate-pdf3.html', context)
 
 
 @register.filter(name='split')
@@ -58,7 +35,7 @@ def home(request):
         Q(resumeprojects__project_title__icontains=search_query) |
         Q(resumeprojects__technologies_used__icontains=search_query)
 
-    )
+    ).distinct()
     context = {
         "resumes": resumes
     }
